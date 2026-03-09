@@ -3,7 +3,23 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Cores da marca — substituídas pelo Super Admin */
+  --brand-primary:   #1c283c;
+  --brand-secondary: #2d3f5f;
+  --brand-accent:    #4a6082;
+  --brand-gold:      #c8a871;
+  --brand-dark:      #0f172a;
 }
+
+/* Classes utilitárias para as cores da marca */
+.bg-brand       { background-color: var(--brand-primary) !important; }
+.bg-brand-sec   { background-color: var(--brand-secondary) !important; }
+.bg-brand-acc   { background-color: var(--brand-accent) !important; }
+.bg-brand-gold  { background-color: var(--brand-gold) !important; }
+.text-brand     { color: var(--brand-primary) !important; }
+.text-brand-gold{ color: var(--brand-gold) !important; }
+.border-brand   { border-color: var(--brand-primary) !important; }
 
 @theme inline {
   --color-background: var(--background);

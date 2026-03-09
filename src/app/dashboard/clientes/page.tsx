@@ -863,7 +863,7 @@ function ClientesPageContent() {
       {/* Modal de Edição/Adicionar */}
       {(editingCliente || showAddForm) && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 md:p-4 overflow-y-auto">
-          <div className="bg-slate-800 rounded-lg p-4 md:p-6 max-w-2xl w-full border border-slate-700 my-4 md:my-8">
+          <div className="bg-brand rounded-lg p-4 md:p-6 max-w-2xl w-full border border-slate-700 my-4 md:my-8">
             <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
               {editingCliente ? 'Editar Cliente' : 'Novo Cliente'}
             </h2>
@@ -1211,7 +1211,7 @@ function ClientesPageContent() {
       {/* Modal de Enviar Mensagem */}
       {clienteParaMensagem && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-lg p-6 max-w-lg w-full border border-slate-700">
+          <div className="bg-brand rounded-lg p-6 max-w-lg w-full border border-slate-700">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-white flex items-center space-x-2">
                 <Send className="w-6 h-6 text-green-400" />

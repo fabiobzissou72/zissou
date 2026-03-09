@@ -32,6 +32,10 @@ interface Configuracao {
   webhook_senha_url?: string
   api_token?: string
   prazo_cancelamento_horas?: number
+  cor_primaria?: string
+  cor_secundaria?: string
+  cor_acento?: string
+  cor_gold?: string
   notif_confirmacao?: boolean
   notif_lembrete_24h?: boolean
   notif_lembrete_2h?: boolean
@@ -44,7 +48,7 @@ const DIAS_SEMANA = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'
 
 export default function ConfiguracoesPage() {
   const [config, setConfig] = useState<Configuracao>({
-    nome_barbearia: 'zissou',
+    nome_barbearia: 'App Barbearia',
     endereco: '',
     telefone: '',
     email: '',
@@ -114,7 +118,7 @@ export default function ConfiguracoesPage() {
         // Garantir que campos string nunca sejam null (evita warning React)
         setConfig({
           ...data,
-          nome_barbearia: data.nome_barbearia ?? 'zissou',
+          nome_barbearia: data.nome_barbearia ?? 'App Barbearia',
           endereco: data.endereco ?? '',
           telefone: data.telefone ?? '',
           email: data.email ?? '',
@@ -123,6 +127,10 @@ export default function ConfiguracoesPage() {
           webhook_url: data.webhook_url ?? '',
           webhook_senha_url: data.webhook_senha_url ?? '',
           api_token: data.api_token ?? '',
+          cor_primaria: data.cor_primaria ?? '#1c283c',
+          cor_secundaria: data.cor_secundaria ?? '#2d3f5f',
+          cor_acento: data.cor_acento ?? '#4a6082',
+          cor_gold: data.cor_gold ?? '#c8a871',
           prazo_cancelamento_horas: data.prazo_cancelamento_horas ?? 2,
           notif_confirmacao: data.notif_confirmacao ?? true,
           notif_lembrete_24h: data.notif_lembrete_24h ?? true,
@@ -991,6 +999,61 @@ export default function ConfiguracoesPage() {
               </div>
             </div>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Identidade Visual */}
+      <Card className="bg-purple-900/20 border-purple-700/50">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center space-x-2">
+            <Settings className="w-5 h-5 text-purple-400" />
+            <span>Identidade Visual — Cores</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { key: 'cor_primaria',   label: 'Cor Principal',   hint: 'Sidebar e menus' },
+              { key: 'cor_secundaria', label: 'Cor Secundária',  hint: 'Cards e fundos' },
+              { key: 'cor_acento',     label: 'Cor de Acento',   hint: 'Bordas e detalhes' },
+              { key: 'cor_gold',       label: 'Cor de Destaque', hint: 'Botões e seleções' },
+            ].map(({ key, label, hint }) => (
+              <div key={key} className="space-y-2">
+                <label className="block text-sm text-purple-300">{label}</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="color"
+                    value={(config as any)[key] || '#1c283c'}
+                    onChange={(e) => {
+                      const val = e.target.value
+                      setConfig({ ...config, [key]: val })
+                      // Aplicar imediatamente no CSS
+                      const varMap: Record<string,string> = {
+                        cor_primaria: '--brand-primary',
+                        cor_secundaria: '--brand-secondary',
+                        cor_acento: '--brand-accent',
+                        cor_gold: '--brand-gold',
+                      }
+                      document.documentElement.style.setProperty(varMap[key], val)
+                    }}
+                    className="w-10 h-10 rounded-lg border border-slate-600 cursor-pointer bg-transparent"
+                  />
+                  <div>
+                    <input
+                      type="text"
+                      value={(config as any)[key] || '#1c283c'}
+                      onChange={(e) => setConfig({ ...config, [key]: e.target.value })}
+                      className="w-24 bg-slate-700 border border-slate-600 rounded px-2 py-1 text-white text-xs font-mono focus:border-purple-400 focus:outline-none"
+                    />
+                    <p className="text-xs text-slate-500 mt-0.5">{hint}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 mt-4">
+            As cores são aplicadas imediatamente no dashboard. Clique em <strong>Salvar Alterações</strong> para persistir.
+          </p>
         </CardContent>
       </Card>
 

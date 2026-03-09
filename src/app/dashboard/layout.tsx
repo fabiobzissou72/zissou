@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
+import { supabase } from '@/lib/supabase'
 import {
   Calendar, Users, TrendingUp, DollarSign, Clock, Award, Settings,
   Search, User, BarChart3, PieChart, Home, UserCheck, Scissors,
@@ -17,12 +18,38 @@ export default function DashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [cores, setCores] = useState<Record<string,string>>({})
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
     checkUser()
+    carregarCores()
   }, [])
+
+  // Carregar cores personalizadas do banco e aplicar como CSS variables
+  const carregarCores = async () => {
+    try {
+      const { data } = await supabase
+        .from('configuracoes')
+        .select('cor_primaria, cor_secundaria, cor_acento, cor_gold')
+        .single()
+      if (data) {
+        const c: Record<string,string> = {}
+        if (data.cor_primaria)   c['--brand-primary']   = data.cor_primaria
+        if (data.cor_secundaria) c['--brand-secondary']  = data.cor_secundaria
+        if (data.cor_acento)     c['--brand-accent']     = data.cor_acento
+        if (data.cor_gold)       c['--brand-gold']       = data.cor_gold
+        if (Object.keys(c).length > 0) {
+          setCores(c)
+          // Aplicar no document root
+          Object.entries(c).forEach(([k,v]) => {
+            document.documentElement.style.setProperty(k, v)
+          })
+        }
+      }
+    } catch {}
+  }
 
   // Atualizar relógio a cada segundo
   useEffect(() => {
@@ -66,7 +93,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen" style={{ background: '#a4a540' }}>
+    <div className="min-h-screen" style={{ background: 'var(--brand-primary)' }}>
       {/* Overlay mobile - clica para fechar sidebar */}
       {sidebarOpen && (
         <div
@@ -76,12 +103,12 @@ export default function DashboardLayout({
       )}
 
       {/* Sidebar */}
-      <div className={`fixed left-0 top-0 h-full bg-slate-800/95 backdrop-blur-xl border-r border-slate-700/50 transition-all duration-300 z-50 ${sidebarOpen ? 'w-64' : 'w-16'} md:block ${sidebarOpen ? 'block' : 'hidden md:block'}`}>
+      <div style={{ background: 'var(--brand-primary)' }} className={`fixed left-0 top-0 h-full backdrop-blur-xl border-r border-slate-700/50 transition-all duration-300 z-50 ${sidebarOpen ? 'w-64' : 'w-16'} md:block ${sidebarOpen ? 'block' : 'hidden md:block'}`}>
         <div className="p-4">
           {/* Logo */}
           <div className="flex items-center space-x-3 mb-8">
             <div className="w-10 h-10 flex items-center justify-center">
-              <img src="/logo.png" alt="zissou" className="w-full h-full object-contain" />
+              <img src="/logo.png" alt="App Barbearia" className="w-full h-full object-contain" />
             </div>
             {sidebarOpen && (
               <div>
@@ -120,7 +147,7 @@ export default function DashboardLayout({
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-white text-sm font-medium truncate">{user?.nome || 'Admin'}</p>
-                    <p className="text-slate-400 text-xs">zissou</p>
+                    <p className="text-slate-400 text-xs">App Barbearia</p>
                   </div>
                 </div>
                 <button
@@ -139,7 +166,7 @@ export default function DashboardLayout({
       {/* Main Content */}
       <div className={`transition-all duration-300 ml-0 ${sidebarOpen ? 'md:ml-64' : 'md:ml-16'}`}>
         {/* Top Header */}
-        <header className="bg-slate-800/50 backdrop-blur-xl border-b border-slate-700/50 sticky top-0 z-40">
+        <header style={{ background: 'var(--brand-primary)' }} className="backdrop-blur-xl border-b border-slate-700/50 sticky top-0 z-40">
           <div className="px-3 md:px-6 py-3 md:py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
@@ -185,7 +212,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Page Content */}
-        <main className="min-h-screen" style={{ background: '#a4a540' }}>
+        <main className="min-h-screen" style={{ background: 'var(--brand-primary)' }}>
           {children}
         </main>
       </div>

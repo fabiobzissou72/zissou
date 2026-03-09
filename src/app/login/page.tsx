@@ -35,13 +35,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#a4a540' }}>
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'var(--brand-primary)' }}>
       <div className="w-full max-w-md">
         <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-700/50 p-8">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="mx-auto w-24 h-24 flex items-center justify-center mb-4">
-              <img src="/logo.png" alt="zissou" className="w-full h-full object-contain" />
+              <img src="/logo.png" alt="App Barbearia" className="w-full h-full object-contain" />
             </div>
             <h1 className="text-2xl font-bold text-white mb-2">APP BARBEARIA</h1>
             <p className="text-cyan-400 text-sm font-medium">BARBEARIA</p>
@@ -105,7 +105,7 @@ export default function LoginPage() {
 
           <div className="mt-4 text-center">
             <p className="text-slate-400 text-xs">
-              Dashboard administrativo • zissou
+              Dashboard administrativo • App Barbearia
             </p>
           </div>
         </div>

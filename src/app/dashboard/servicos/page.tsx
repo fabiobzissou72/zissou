@@ -305,7 +305,7 @@ export default function ServicosPage() {
       {/* Modal de Edição/Adicionar */}
       {(editingServico || showAddForm) && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-lg p-6 max-w-lg w-full border border-slate-700">
+          <div className="bg-brand rounded-lg p-6 max-w-lg w-full border border-slate-700">
             <h2 className="text-2xl font-bold text-white mb-4">
               {editingServico ? 'Editar Serviço' : 'Novo Serviço'}
             </h2>

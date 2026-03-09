@@ -110,24 +110,39 @@ export default function DashboardPage() {
 
       const clientesUnicos = new Set(clientesAtivos?.map(a => a.cliente_id)).size
 
-      // Receita por serviço (últimos 7 dias)
+      // Receita por serviço (últimos 7 dias) — usa agendamento_servicos para multi-serviço
       const dataLimite7 = new Date()
       dataLimite7.setDate(dataLimite7.getDate() - 7)
 
-      const { data: agendamentosServicos } = await supabase
-        .from('agendamentos')
+      const { data: agServicos } = await supabase
+        .from('agendamento_servicos')
         .select(`
-          valor,
-          servicos (nome)
+          preco,
+          servicos (nome),
+          agendamentos!inner (status, data_criacao)
         `)
-        .gte('data_criacao', dataLimite7.toISOString())
-        .eq('status', 'concluido')
+        .eq('agendamentos.status', 'concluido')
+        .gte('agendamentos.data_criacao', dataLimite7.toISOString())
 
       const receitaPorServico: { [key: string]: number } = {}
-      agendamentosServicos?.forEach(agendamento => {
-        const nomeServico = agendamento.servicos?.nome || 'Sem serviço'
-        receitaPorServico[nomeServico] = (receitaPorServico[nomeServico] || 0) + (Number(agendamento.valor) || 0)
-      })
+
+      if (agServicos && agServicos.length > 0) {
+        agServicos.forEach((as: any) => {
+          const nomeServico = as.servicos?.nome || 'Serviço'
+          receitaPorServico[nomeServico] = (receitaPorServico[nomeServico] || 0) + (Number(as.preco) || 0)
+        })
+      } else {
+        // Fallback: usar movimentos_financeiros
+        const { data: movs } = await supabase
+          .from('movimentos_financeiros')
+          .select('servico_nome, valor_total')
+          .eq('tipo', 'servico')
+          .gte('data_criacao', dataLimite7.toISOString())
+        movs?.forEach((m: any) => {
+          const nome = m.servico_nome || 'Serviço'
+          receitaPorServico[nome] = (receitaPorServico[nome] || 0) + (Number(m.valor_total) || 0)
+        })
+      }
 
       const receitaServicosSorted = Object.entries(receitaPorServico)
         .map(([nome, valor]) => ({ nome, valor }))

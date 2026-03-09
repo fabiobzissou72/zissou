@@ -409,7 +409,7 @@ export default function PlanosPage() {
       {/* Modal de Novo/Editar Plano */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-lg p-6 max-w-2xl w-full border border-slate-700">
+          <div className="bg-brand rounded-lg p-6 max-w-2xl w-full border border-slate-700">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-white">
                 {editingPlano ? 'Editar Plano' : 'Novo Plano'}
@@ -532,7 +532,7 @@ export default function PlanosPage() {
       {/* Modal de Contratar Plano */}
       {showContratarModal && planoSelecionado && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-lg p-6 max-w-2xl w-full border border-slate-700">
+          <div className="bg-brand rounded-lg p-6 max-w-2xl w-full border border-slate-700">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-white">Contratar Plano</h2>
               <button
