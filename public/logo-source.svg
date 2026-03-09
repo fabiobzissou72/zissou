@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" ry="80" fill="#1B2B4B"/>
+
+  <!-- Shield shape -->
+  <path d="M256 60 L336 95 L336 195 Q336 265 256 310 Q176 265 176 195 L176 95 Z"
+        fill="none" stroke="white" stroke-width="12" stroke-linejoin="round"/>
+
+  <!-- Inner shield lines (V/diamond design) -->
+  <!-- Outer V -->
+  <polyline points="196,115 256,185 316,115" fill="none" stroke="white" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Inner V -->
+  <polyline points="216,135 256,175 296,135" fill="none" stroke="white" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Diamond top -->
+  <polygon points="256,100 276,125 256,148 236,125" fill="none" stroke="white" stroke-width="8" stroke-linejoin="round"/>
+  <!-- Bottom point -->
+  <line x1="256" y1="185" x2="256" y2="230" stroke="white" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- DASHBOARD text -->
+  <text x="256" y="370" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="62" fill="white" text-anchor="middle" letter-spacing="1">DASHBOARD</text>
+
+  <!-- BARBEARIA text -->
+  <text x="256" y="420" font-family="Arial, sans-serif" font-weight="400" font-size="30" fill="white" text-anchor="middle" letter-spacing="10">BARBEARIA</text>
+</svg>
