@@ -1413,7 +1413,7 @@ export default function AgendamentosPage() {
       {/* Popup de Detalhes do Agendamento */}
       {detalhesAgendamento && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={() => setDetalhesAgendamento(null)}>
-          <div style={{ background: "#1c283c" }} className="rounded-lg p-6 max-w-4xl w-full border border-purple-500/50 shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div style={{ background: 'var(--brand-primary)' }} className="rounded-lg p-6 max-w-4xl w-full border border-purple-500/50 shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-start justify-between mb-6">
               <div>
@@ -1625,7 +1625,7 @@ export default function AgendamentosPage() {
       {/* Modal de Edição */}
       {editingAgendamento && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div style={{ background: "#1c283c" }} className="rounded-lg p-6 max-w-md w-full border border-slate-700">
+          <div style={{ background: 'var(--brand-primary)' }} className="rounded-lg p-6 max-w-md w-full border border-slate-700">
             <h2 className="text-2xl font-bold text-white mb-4">Editar Agendamento</h2>
 
             <div className="space-y-4">
@@ -1695,7 +1695,7 @@ export default function AgendamentosPage() {
       {/* Modal de Novo Agendamento */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div style={{ background: "#1c283c" }} className="rounded-lg p-6 max-w-2xl w-full border border-slate-700 my-8">
+          <div style={{ background: 'var(--brand-primary)' }} className="rounded-lg p-6 max-w-2xl w-full border border-slate-700 my-8">
             <h2 className="text-2xl font-bold text-white mb-6">Novo Agendamento</h2>
 
             <div className="space-y-6 max-h-[70vh] overflow-y-auto pr-2">

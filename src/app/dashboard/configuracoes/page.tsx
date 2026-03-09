@@ -363,7 +363,7 @@ export default function ConfiguracoesPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Informações da Barbearia */}
-        <Card className="bg-purple-900/20 border-purple-700/50">
+        <Card className="bg-brand border-brand opacity-90">
           <CardHeader>
             <CardTitle className="text-white flex items-center space-x-2">
               <Building2 className="w-5 h-5 text-purple-400" />
@@ -519,7 +519,7 @@ export default function ConfiguracoesPage() {
         </Card>
 
         {/* Configurações de Agendamento */}
-        <Card className="bg-purple-900/20 border-purple-700/50">
+        <Card className="bg-brand border-brand opacity-90">
           <CardHeader>
             <CardTitle className="text-white flex items-center space-x-2">
               <DollarSign className="w-5 h-5 text-purple-400" />
@@ -573,7 +573,7 @@ export default function ConfiguracoesPage() {
         </Card>
 
         {/* Webhook */}
-        <Card className="bg-purple-900/20 border-purple-700/50">
+        <Card className="bg-brand border-brand opacity-90">
           <CardHeader>
             <CardTitle className="text-white flex items-center space-x-2">
               <Link className="w-5 h-5 text-purple-400" />
@@ -612,7 +612,7 @@ export default function ConfiguracoesPage() {
         </Card>
 
         {/* Sistema de Cancelamento */}
-        <Card className="bg-purple-900/20 border-purple-700/50">
+        <Card className="bg-brand border-brand opacity-90">
           <CardHeader>
             <CardTitle className="text-white flex items-center space-x-2">
               <Clock className="w-5 h-5 text-purple-400" />
@@ -638,7 +638,7 @@ export default function ConfiguracoesPage() {
         </Card>
 
         {/* Segurança da API */}
-        <Card className="bg-purple-900/20 border-purple-700/50">
+        <Card className="bg-brand border-brand opacity-90">
           <CardHeader>
             <CardTitle className="text-white flex items-center space-x-2">
               <Key className="w-5 h-5 text-purple-400" />
@@ -702,7 +702,7 @@ export default function ConfiguracoesPage() {
       </div>
 
       {/* Notificações Automáticas N8N */}
-      <Card className="bg-purple-900/20 border-purple-700/50">
+      <Card className="bg-brand border-brand opacity-90">
         <CardHeader>
           <CardTitle className="text-white flex items-center space-x-2">
             <Bell className="w-5 h-5 text-purple-400" />
@@ -861,7 +861,7 @@ export default function ConfiguracoesPage() {
       </Card>
 
       {/* Webhooks por Barbeiro */}
-      <Card className="bg-purple-900/20 border-purple-700/50">
+      <Card className="bg-brand border-brand opacity-90">
         <CardHeader>
           <CardTitle className="text-white flex items-center space-x-2">
             <Bell className="w-5 h-5 text-purple-400" />
@@ -1003,7 +1003,7 @@ export default function ConfiguracoesPage() {
       </Card>
 
       {/* Identidade Visual */}
-      <Card className="bg-purple-900/20 border-purple-700/50">
+      <Card className="bg-brand border-brand opacity-90">
         <CardHeader>
           <CardTitle className="text-white flex items-center space-x-2">
             <Settings className="w-5 h-5 text-purple-400" />
@@ -1062,7 +1062,7 @@ export default function ConfiguracoesPage() {
       </Card>
 
       {/* Informações Adicionais */}
-      <Card className="bg-purple-900/20 border-purple-700/50">
+      <Card className="bg-brand border-brand opacity-90">
         <CardHeader>
           <CardTitle className="text-white flex items-center space-x-2">
             <Users className="w-5 h-5 text-purple-400" />
