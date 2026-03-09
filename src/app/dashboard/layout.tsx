@@ -27,6 +27,16 @@ export default function DashboardLayout({
     carregarCores()
   }, [])
 
+  // Calcula se texto deve ser claro ou escuro baseado na luminância do fundo
+  const calcularTextoContraste = (hex: string): string => {
+    const r = parseInt(hex.slice(1,3),16)
+    const g = parseInt(hex.slice(3,5),16)
+    const b = parseInt(hex.slice(5,7),16)
+    // Luminância relativa (fórmula WCAG)
+    const lum = (0.299*r + 0.587*g + 0.114*b) / 255
+    return lum > 0.5 ? '#1c283c' : '#ffffff'
+  }
+
   // Carregar cores personalizadas do banco e aplicar como CSS variables
   const carregarCores = async () => {
     try {
@@ -36,13 +46,12 @@ export default function DashboardLayout({
         .single()
       if (data) {
         const c: Record<string,string> = {}
-        if (data.cor_primaria)   c['--brand-primary']   = data.cor_primaria
+        if (data.cor_primaria)   { c['--brand-primary']   = data.cor_primaria; c['--brand-text-primary'] = calcularTextoContraste(data.cor_primaria) }
         if (data.cor_secundaria) c['--brand-secondary']  = data.cor_secundaria
         if (data.cor_acento)     c['--brand-accent']     = data.cor_acento
-        if (data.cor_gold)       c['--brand-gold']       = data.cor_gold
+        if (data.cor_gold)       { c['--brand-gold'] = data.cor_gold; c['--brand-text-gold'] = calcularTextoContraste(data.cor_gold) }
         if (Object.keys(c).length > 0) {
           setCores(c)
-          // Aplicar no document root
           Object.entries(c).forEach(([k,v]) => {
             document.documentElement.style.setProperty(k, v)
           })

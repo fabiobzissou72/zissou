@@ -1027,7 +1027,6 @@ export default function ConfiguracoesPage() {
                     onChange={(e) => {
                       const val = e.target.value
                       setConfig({ ...config, [key]: val })
-                      // Aplicar imediatamente no CSS
                       const varMap: Record<string,string> = {
                         cor_primaria: '--brand-primary',
                         cor_secundaria: '--brand-secondary',
@@ -1035,6 +1034,11 @@ export default function ConfiguracoesPage() {
                         cor_gold: '--brand-gold',
                       }
                       document.documentElement.style.setProperty(varMap[key], val)
+                      // Calcular texto contrastante automaticamente
+                      const r = parseInt(val.slice(1,3),16), g = parseInt(val.slice(3,5),16), b = parseInt(val.slice(5,7),16)
+                      const lum = (0.299*r + 0.587*g + 0.114*b) / 255
+                      const textVar = key === 'cor_primaria' ? '--brand-text-primary' : key === 'cor_gold' ? '--brand-text-gold' : null
+                      if (textVar) document.documentElement.style.setProperty(textVar, lum > 0.5 ? '#1c283c' : '#ffffff')
                     }}
                     className="w-10 h-10 rounded-lg border border-slate-600 cursor-pointer bg-transparent"
                   />
