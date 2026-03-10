@@ -230,8 +230,23 @@ export default function ConfiguracoesPage() {
     }
 
     const novoToken = gerarTokenAPI()
-    setConfig({ ...config, api_token: novoToken })
-    alert('✅ Novo token gerado! Clique em Salvar Alterações para ativar.')
+    const novoConfig = { ...config, api_token: novoToken }
+    setConfig(novoConfig)
+
+    // Salvar imediatamente no banco — não depender de "Salvar Alterações"
+    try {
+      setSalvando(true)
+      if (novoConfig.id) {
+        await supabase.from('configuracoes').update({ api_token: novoToken }).eq('id', novoConfig.id)
+      } else {
+        await supabase.from('configuracoes').insert([{ ...novoConfig }])
+      }
+      alert('✅ Novo token gerado e salvo! Copie e configure no App Cliente.')
+    } catch {
+      alert('Token gerado mas erro ao salvar. Clique em Salvar Alterações manualmente.')
+    } finally {
+      setSalvando(false)
+    }
   }
 
   const copiarToken = () => {
