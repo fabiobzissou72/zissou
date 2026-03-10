@@ -102,7 +102,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--brand-primary)' }}>
+    <div className="min-h-screen" style={{ background: 'var(--brand-primary)', color: 'var(--brand-text-primary)' }}>
       {/* Overlay mobile - clica para fechar sidebar */}
       {sidebarOpen && (
         <div
@@ -112,7 +112,7 @@ export default function DashboardLayout({
       )}
 
       {/* Sidebar */}
-      <div style={{ background: 'var(--brand-primary)' }} className={`fixed left-0 top-0 h-full backdrop-blur-xl border-r border-slate-700/50 transition-all duration-300 z-50 ${sidebarOpen ? 'w-64' : 'w-16'} md:block ${sidebarOpen ? 'block' : 'hidden md:block'}`}>
+      <div style={{ background: 'var(--brand-primary)', color: 'var(--brand-text-primary)' }} className={`fixed left-0 top-0 h-full backdrop-blur-xl border-r border-slate-700/50 transition-all duration-300 z-50 ${sidebarOpen ? 'w-64' : 'w-16'} md:block ${sidebarOpen ? 'block' : 'hidden md:block'}`}>
         <div className="p-4">
           {/* Logo */}
           <div className="flex items-center space-x-3 mb-8">
@@ -175,7 +175,7 @@ export default function DashboardLayout({
       {/* Main Content */}
       <div className={`transition-all duration-300 ml-0 ${sidebarOpen ? 'md:ml-64' : 'md:ml-16'}`}>
         {/* Top Header */}
-        <header style={{ background: 'var(--brand-primary)' }} className="backdrop-blur-xl border-b border-slate-700/50 sticky top-0 z-40">
+        <header style={{ background: 'var(--brand-primary)', color: 'var(--brand-text-primary)' }} className="backdrop-blur-xl border-b border-slate-700/50 sticky top-0 z-40">
           <div className="px-3 md:px-6 py-3 md:py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
@@ -221,7 +221,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Page Content */}
-        <main className="min-h-screen" style={{ background: 'var(--brand-primary)' }}>
+        <main className="min-h-screen" style={{ background: 'var(--brand-primary)', color: 'var(--brand-text-primary)' }}>
           {children}
         </main>
       </div>
